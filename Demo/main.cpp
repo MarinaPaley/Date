@@ -1,14 +1,16 @@
-#include <iostream>
+п»ї#include <iostream>
 #include "..\Date\Date.h"
 
 using namespace std;
 using namespace rut::PL::Date;
 /// <summary>
-/// Точка входа в программу.
+/// РўРѕС‡РєР° РІС…РѕРґР° РІ РїСЂРѕРіСЂР°РјРјСѓ.
 /// </summary>
-/// <returns> В случае успеха, возвращаем 0. </returns>
+/// <returns> Р’ СЃР»СѓС‡Р°Рµ СѓСЃРїРµС…Р°, РІРѕР·РІСЂР°С‰Р°РµРј 0. </returns>
 int main()
 {
+	setlocale(LC_ALL, "Rus");
+
 	Date today{ 2023, 
 		Date::Month::February, 
 		Date::DayOfWeek::Tuesday, 
@@ -19,5 +21,18 @@ int main()
 		15 };
 	cout << today.day << endl;
 	cout << tomorrow->day << endl;
-	return 0;
+
+	try
+	{
+		Date wrongDate{ 2023,
+		Date::Month::February,
+		Date::DayOfWeek::Tuesday,
+			32 };
+		return 0;
+	}
+	catch (std::logic_error& error)
+	{ 
+		cerr << error.what();
+		return 1;
+	}
 }
